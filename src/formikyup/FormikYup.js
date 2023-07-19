@@ -8,7 +8,25 @@ const FormikYup = () => {
         firstname: Yup.string().required(),
         lastname:  Yup.string().required(),
         email:     Yup.string().email().required(),
-        password:  Yup.string().required().min(4).max(16)
+        password:  Yup.string()
+        .required()
+        .trim()
+        .matches(
+            /(?=.*[A-Z])/,
+            'Your password needs to have at least one capital letter',
+          )
+          .matches(
+            /(?=.*[!@#$%^&*])/,
+            'Your password needs to have at least one special character',
+          )
+          .matches(
+            /(?=.*[a-z])/,
+            'Your password needs to have at least one lower case character',
+          )
+          .matches(/(?=.*[0-9])/, 'Your password needs to have at least one number')
+        .min(4)
+        .max(16)
+
     })
     const initialValues ={
         firstname: "",
@@ -27,13 +45,19 @@ const FormikYup = () => {
 
   return (
     <div>
-        <input type="text" className="form-control" value={formik.lastname} onChange={formik.handleChange} name="lastname" placeholder='Lastname'/><span className='text-danger '>{formik.errors.lastname}</span>
+        <input type="text" className="form-control" value={formik.lastname} onChange={formik.handleChange} name="lastname" placeholder='Lastname'/>
 
-        <input type="text" className="form-control" value={formik.firstname} onChange={formik.handleChange} name="firstname" placeholder='Firstname'/><span className='text-danger'>{formik.errors.firstname}</span>
+        <span className='text-danger '>{formik.errors.lastname}</span>
 
-        <input type="email" className="form-control" value={formik.email} onChange={formik.handleChange} name="email" placeholder='Email'/><span className='text-danger'>{formik.errors.email}</span>
+        <input type="text" className="form-control" value={formik.firstname} onChange={formik.handleChange} name="firstname" placeholder='Firstname'/>
+        
+        <span className='text-danger'>{formik.errors.firstname}</span>
 
-        <input type="password" className="form-control" value={formik.password} onChange={formik.handleChange} name="password" placeholder='Password'/><p className='text-danger'>{formik.errors.password}</p>
+        <input type="email" className="form-control" value={formik.email} onChange={formik.handleChange} name="email" placeholder='Email'/>
+        <span className='text-danger'>{formik.errors.email}</span>
+
+        <input type="password" className="form-control" value={formik.password} onChange={formik.handleChange} name="password" placeholder='Password'/>
+        <p className='text-danger'>{formik.errors.password}</p>
             
         <button className='btn btn-success' onClick={formik.handleSubmit}>Submit</button>
     </div>

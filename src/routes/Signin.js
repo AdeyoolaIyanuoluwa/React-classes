@@ -12,28 +12,11 @@ const Signin = () => {
         // console.log(users)
     }
     const login = async ()=>{
-        axios.post(baseUrl+"/login", users).then(res=>{})
+        axios.post(baseUrl + "/login", users).then(res=>{})
         .catch(err=>{
             console.log(err.message)
         })
-        // try{
-        //     await axios.post(baseUrl + "/login", {users})
-        //     .then( res =>{
-        //        console.log(res);
-               
-        //        if(res.data === "login successful"){
-        //         alert("Login successful")
-        //        }else if (res.data === "Incorrect"){
-        //             alert("not signed up")
-        //        }
-        //    })
-        //     .catch(err=>{
-        //         alert("wrong details")
-        //         console.log(err);
-        //     })
-        // }catch(err){
-        //     console.log(err);
-        // }
+      
     }
   return (
     <div>

@@ -10,24 +10,35 @@ import Dash from './routes/Dash'
 import Main from './routes/Main'
 import NewPost from './routes/NewPost'
 import UserGuard from './guards/userGuard'
-import Assign from './assign'
-import examination from './examination'
+import Assign from './classes/assign'
+import examination from './classes/examination'
 import Pro from './routes/pro'
 import Password from './routes/Password'
 import Signin from './routes/Signin'
 import FormikYup from './formikyup/FormikYup'
+import S from './routes/S'
+import ClassComponent from './routes/ClassComponent'
+import axios from 'axios'
+import ForSocket from './routes/ForSocket'
 
-
+axios.interceptors.request.use((value)=>{
+  value.headers = {
+    "Authorization":localStorage.token
+  };
+  return value
+})
  const MainRouter = () => {
   return (
       <Router>
         <Nav/>
           <Routes>
-
+                <Route path='/class' element={<ClassComponent/>}/>
                 <Route path='/que/:id' element={<Assign examination={examination}/>}/>
                 <Route path='/pass' element={<Password/>}/>
                 <Route path='/form' element={<FormikYup/>}/>
+                <Route path='/socket' element={<ForSocket/>}/>
                 <Route path='/signin' element={<Signin/>}/>
+                <Route path='/s' element={<S/>}/>
                 <Route path='/pro' element={<Pro/>}/>
                 {/* <Route path='/dash' element={<Dash/>}/> */}
                 <Route path='/newpost' element={<NewPost/>}/>

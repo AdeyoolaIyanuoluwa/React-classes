@@ -44,7 +44,7 @@ const NewPost = () => {
             {
                 post.map((each,i) =>(
                     <div>
-                        {each.imagesPath}
+                        {/* {each.imagesPath} */}
                         {/* <img src={`${baseUrl}/postimages/${each.imagesPath}`} alt="postimage"/> */}
                         <img src={each.imageLink} alt="postimage"/>
                     </div>

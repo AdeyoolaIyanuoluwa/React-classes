@@ -29,7 +29,7 @@ const Password = () => {
         <input onChange={handleChange} placeholder='Lastname' name='lastname' className='text form-control' type="text" value={users.lastname}/>
         <input onChange={handleChange} placeholder='Email' name='email' className='text form-control' type="email" value={users.email}/>
         <input onChange={handleChange} placeholder='Password' name='password' className='text form-control' type="password" value={users.password}/>
-        <button className='btn btn-success mt-3' onClick={handleSubmit}>Submit</button>
+        <button className='btn btn-success mt-3' onClick={handleSubmit} type="submit">Submit</button>
         
     </div>
   )
